@@ -7,11 +7,11 @@ public class Enemy : MonoBehaviour
 {
     public float speed = 2f;
     public Sprite[] animationSprites;
-
     public float animationTime = 1.0f;
+    public System.Action killed;
 
     private SpriteRenderer _spriteRenderer;
-    private int _animationFrame;
+    private int _animationFrame;    
 
     private Vector3 _direction = Vector2.right;
     
@@ -69,5 +69,14 @@ public class Enemy : MonoBehaviour
         }
 
         _spriteRenderer.sprite = this.animationSprites[_animationFrame];
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.layer == LayerMask.NameToLayer("PlayerAttack"))
+        {
+           // this.killed.Invoke();
+            Destroy(this.gameObject);
+        }
     }
 }

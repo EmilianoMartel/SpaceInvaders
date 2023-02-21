@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class PlayerAttack : MonoBehaviour
 {
-    float xPosition;
-    public GameObject Player;
+    public Vector3 direction;
+    public float speed;
+    public System.Action destroyed;
 
     // Start is called before the first frame update
     void Start()
     {
-        xPosition = Player.transform.position.x;
-        gameObject.transform.Translate(xPosition, 0 , 0);
+        
     }
 
     // Update is called once per frame
@@ -20,4 +20,9 @@ public class PlayerAttack : MonoBehaviour
         gameObject.transform.Translate(0, 10f * Time.deltaTime, 0);
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        //this.destroyed.Invoke();
+        Destroy(this.gameObject);
+    }
 }

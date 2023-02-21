@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: -1787947336041951065}
   - component: {fileID: -5128984613740370877}
   - component: {fileID: -4500581910574535712}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enemy-Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,7 +110,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.0001, y: 0.0001}
+  m_Size: {x: 3, y: 3}
   m_EdgeRadius: 0
 --- !u!114 &-4500581910574535712
 MonoBehaviour:
