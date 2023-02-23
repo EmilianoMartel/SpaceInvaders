@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
+    public Vector3 direction;
+    public float speed;
+    public System.Action destroyed;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        gameObject.transform.Translate(0, -10f * Time.deltaTime, 0);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        //this.destroyed.Invoke();
+        Destroy(this.gameObject);
     }
 }
