@@ -28,11 +28,11 @@ public class Player : MonoBehaviour
 
     private void Move() //movimiento
     {
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) && gameObject.transform.position.x >= -30f)
         {
             gameObject.transform.Translate(-10f * Time.deltaTime,0,0);
         }
-        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow) && gameObject.transform.position.x <= 30f)
         {
             gameObject.transform.Translate(10f * Time.deltaTime, 0, 0);
         }
