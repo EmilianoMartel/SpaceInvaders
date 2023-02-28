@@ -667,7 +667,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5202988693387428770, guid: 900bd0bfbb451c84d980e3e0e617814c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.019904375
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5202988693387428770, guid: 900bd0bfbb451c84d980e3e0e617814c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -913,8 +913,8 @@ MonoBehaviour:
   - {fileID: 4457059199994409254, guid: 900bd0bfbb451c84d980e3e0e617814c, type: 3}
   - {fileID: 7423764957593410669, guid: 4fee2d9a9c4d0344db129ce6f55ca1b5, type: 3}
   - {fileID: 2920997993732872679, guid: 98680a0168b48cb46bc55d1d4b486ae8, type: 3}
-  rows: 11
-  columns: 5
+  rows: 3
+  columns: 3
   speed:
     serializedVersion: 2
     m_Curve:

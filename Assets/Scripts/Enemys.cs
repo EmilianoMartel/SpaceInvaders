@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -20,6 +21,8 @@ public class Enemys : MonoBehaviour
 
     private float _direction = 1.0f;
 
+    public static Action OnWallTouched;
+    private List<Enemy> spawnedEnemies = new List<Enemy>(); 
 
     private void Update()
     {
@@ -28,6 +31,7 @@ public class Enemys : MonoBehaviour
 
     private void Awake() //la matriz toda rota
     {
+        OnWallTouched += SwapDirection;
         for(int row = 0; row < this.rows; row++)
         {
             float width = 2.0f * (this.columns - 1);
@@ -38,21 +42,38 @@ public class Enemys : MonoBehaviour
             for (int col =0 ; col < this.columns; col++)
             {                
                 Enemy enemy = Instantiate(this.prefabs[row], this.transform);
-                //enemy.killed += EnemyKilled();
+                enemy.OnKilled += EnemyKilled;
                 Vector3 position = rowPosition;
                 position.x += col * 10.0f;
                 enemy.transform.localPosition = position;
+                spawnedEnemies.Add(enemy);
             }
         }
+
     }
-        
+
+    private void SwapDirection()
+    {
+        foreach (Enemy enemy in spawnedEnemies)
+        {
+            enemy.SwapDirection();
+        }
+    }
+
+    private void OnDestroy()
+    {
+        OnWallTouched -= SwapDirection;
+    }
+
     private void Start()
     {
        InvokeRepeating(nameof(Attack), this.enemyAttackRate, this.enemyAttackRate);
     }
 
-    private void EnemyKilled()
+    private void EnemyKilled(Enemy enemy)
     {
+        spawnedEnemies.Remove(enemy);
+        enemy.OnKilled -= EnemyKilled;
         this.amountKilled++;
     }
 
@@ -64,7 +85,7 @@ public class Enemys : MonoBehaviour
             {
                 continue;
             }
-            if (Random.value < (1.0f / ( (float) this.totalEnemy - (float) this.amountKilled)))
+            if (UnityEngine.Random.value < (1.0f / ( (float) this.totalEnemy - (float) this.amountKilled)))
             {
                 Instantiate(this.EnemyAttack, enemy.position, Quaternion.identity);
                 break;
