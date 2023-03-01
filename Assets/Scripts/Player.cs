@@ -7,13 +7,7 @@ public class Player : MonoBehaviour
 {
     //float canShoot=10;
     public PlayerAttack PlayerAttack;
-    private bool _laserActive;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    private bool _laserActive;    
 
     // Update is called once per frame
     void Update()
@@ -51,5 +45,11 @@ public class Player : MonoBehaviour
     void LaserDestroyed()
     {
         _laserActive = false;
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        //this.destroyed.Invoke();
+        //Destroy(this.gameObject);
+        Debug.Log("me dio");
     }
 }

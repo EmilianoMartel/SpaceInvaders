@@ -4,34 +4,32 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class Enemys : MonoBehaviour
 {
+    //variables para la cantidad de enemigos
     public Enemy[] prefabs;
     public int rows = 3;
-    public int columns = 3;
-    public AnimationCurve speed;    
+    public int columns = 3;    
     //variable para la velocidad de los enemigos
     public int amountKilled { get; private set; }
     public int totalEnemy => this.rows * this.columns;
     public float percentKilled => (float) this.amountKilled / (float) this.totalEnemy;
+    public AnimationCurve speed;
     //variable para el ataque
     public EnemyAttack EnemyAttack;
     public float enemyAttackRate = 1.0f;
-
-    private float _direction = 1.0f;
+    public EnemyAttackEvent destroyed;
 
     public static Action OnWallTouched;
-    private List<Enemy> spawnedEnemies = new List<Enemy>(); 
+    public static Action AdvanceSpeed;
+    private List<Enemy> spawnedEnemies = new List<Enemy>();
 
-    private void Update()
-    {
-        
-    }
-
-    private void Awake() //la matriz toda rota
+    private void Awake() //matriz de enamigos
     {
         OnWallTouched += SwapDirection;
+        AdvanceSpeed += HighSpeed;
         for(int row = 0; row < this.rows; row++)
         {
             float width = 2.0f * (this.columns - 1);
@@ -48,8 +46,7 @@ public class Enemys : MonoBehaviour
                 enemy.transform.localPosition = position;
                 spawnedEnemies.Add(enemy);
             }
-        }
-
+        }        
     }
 
     private void SwapDirection()
@@ -63,6 +60,15 @@ public class Enemys : MonoBehaviour
     private void OnDestroy()
     {
         OnWallTouched -= SwapDirection;
+        AdvanceSpeed -= HighSpeed;
+    }
+
+    private void HighSpeed()
+    {
+        foreach (Enemy enemy in spawnedEnemies)
+        {
+            enemy.HighSpeed(percentKilled);
+        }
     }
 
     private void Start()
@@ -75,6 +81,14 @@ public class Enemys : MonoBehaviour
         spawnedEnemies.Remove(enemy);
         enemy.OnKilled -= EnemyKilled;
         this.amountKilled++;
+        //percentKilled = this.amountKilled / (float)this.totalEnemy;
+        //enemy.speed += enemy.speed + (1 - this.speed.Evaluate(percentKilled));
+    }
+
+    private void Destroyed(EnemyAttack enemyAttack)
+    {
+        EnemyAttack.destroyed -= Destroyed;
+        
     }
 
     private void Attack() //el ataque
@@ -87,9 +101,10 @@ public class Enemys : MonoBehaviour
             }
             if (UnityEngine.Random.value < (1.0f / ( (float) this.totalEnemy - (float) this.amountKilled)))
             {
-                Instantiate(this.EnemyAttack, enemy.position, Quaternion.identity);
+                EnemyAttack EnemyAttack = Instantiate(this.EnemyAttack, enemy.position, Quaternion.identity);
+                EnemyAttack.destroyed += Destroyed;
                 break;
             }
         }    
-    }
+    }    
 }
