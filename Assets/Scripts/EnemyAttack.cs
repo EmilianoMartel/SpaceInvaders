@@ -6,7 +6,6 @@ public delegate void EnemyAttackEvent(EnemyAttack EnemyAttack);
 public class EnemyAttack : MonoBehaviour
 {
     public Vector3 direction;
-    public float speed;
     public EnemyAttackEvent destroyed;
 
     // Update is called once per frame

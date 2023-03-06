@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour
     private float direction = 1.0f;
     private SpriteRenderer _spriteRenderer;
     private int _animationFrame;
+    private const float _initSpeed = 1.0f; //le ponemos prefijo const para que no se toque
 
     public Sprite[] animationSprites;
     public float animationTime = 1.0f;
@@ -26,8 +27,7 @@ public class Enemy : MonoBehaviour
     }
 
     void Update()
-    {        
-        //direction += direction * speed * Time.deltaTime;
+    {
         Move();        
         if (gameObject.transform.position.x >= 30) //si va a la derecha y choca con el borde esto
         {
@@ -42,7 +42,7 @@ public class Enemy : MonoBehaviour
 
     private void Move()
     {            
-        gameObject.transform.Translate(direction * Time.deltaTime, 0, 0);
+        gameObject.transform.Translate(direction * speed * Time.deltaTime, 0, 0);
     }    
 
     private void Awake()
@@ -78,6 +78,10 @@ public class Enemy : MonoBehaviour
 
     internal void HighSpeed(float PercentKill)
     {
-        speed *= PercentKill;
+        if (speed >= 5)
+        {
+            speed = 5;
+        }
+        speed += _initSpeed * PercentKill;
     }
 }

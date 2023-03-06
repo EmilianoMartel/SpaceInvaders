@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2506043438957451193}
   - component: {fileID: 733004286749716022}
   - component: {fileID: 2271193171289617609}
+  - component: {fileID: -8444540834973346408}
   m_Layer: 10
   m_Name: Wall
   m_TagString: Untagged
@@ -98,7 +99,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.24}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -109,5 +110,22 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.2, y: 3.2}
+  m_Size: {x: 1.77, y: 1.72}
   m_EdgeRadius: 0
+--- !u!114 &-8444540834973346408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 796415866074546722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ce682f27e6a99a4f92efca9992206a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifeSprites:
+  - {fileID: -437055187, guid: 3b61c3dd4672b9543982b0c97c406ea2, type: 3}
+  - {fileID: 679167521, guid: 3b61c3dd4672b9543982b0c97c406ea2, type: 3}
+  - {fileID: -1927756156, guid: 3b61c3dd4672b9543982b0c97c406ea2, type: 3}
+  - {fileID: -1380823919, guid: 3b61c3dd4672b9543982b0c97c406ea2, type: 3}

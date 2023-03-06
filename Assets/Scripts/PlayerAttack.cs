@@ -16,7 +16,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        //this.destroyed.Invoke();
-        Destroy(this.gameObject);
+        this.destroyed.Invoke();
+        Destroy(this.gameObject);        
     }
 }

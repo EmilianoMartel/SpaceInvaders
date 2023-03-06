@@ -78,11 +78,10 @@ public class Enemys : MonoBehaviour
 
     private void EnemyKilled(Enemy enemy)
     {
-        spawnedEnemies.Remove(enemy);
+        spawnedEnemies.Remove(enemy);        
         enemy.OnKilled -= EnemyKilled;
         this.amountKilled++;
-        //percentKilled = this.amountKilled / (float)this.totalEnemy;
-        //enemy.speed += enemy.speed + (1 - this.speed.Evaluate(percentKilled));
+        HighSpeed();
     }
 
     private void Destroyed(EnemyAttack enemyAttack)
