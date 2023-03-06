@@ -22,6 +22,5 @@ public class EnemyAttack : MonoBehaviour
     {
         destroyed?.Invoke(this);
         Destroy(this.gameObject);
-        Debug.Log("choque");
     }
 }

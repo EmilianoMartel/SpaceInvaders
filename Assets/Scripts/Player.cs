@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
 {
     //float canShoot=10;
     public PlayerAttack PlayerAttack;
+    public int life;
     private bool _laserActive;    
 
     // Update is called once per frame
@@ -48,8 +49,10 @@ public class Player : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        //this.destroyed.Invoke();
-        //Destroy(this.gameObject);
-        Debug.Log("me dio");
+        life--;
+        if (life == 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }

@@ -25,14 +25,13 @@ public class Wall : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("EnemyAttack"))
         {
             _lifeWall--;
-            Debug.Log("en la pared");
             if (_lifeWall < 0)
             {
                 Destroy(this.gameObject);
                 return;
             }
             Life();
-        }        
+        }
     }
 
 }
