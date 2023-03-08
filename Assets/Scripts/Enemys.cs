@@ -17,11 +17,12 @@ public class Enemys : MonoBehaviour
     public EnemyAttack EnemyAttack;
     public float enemyAttackRate = 1.0f;
     public EnemyAttackEvent destroyed;
-
+    //variable UI PA LA PROXIMA en su scrip propio
     public TMPro.TMP_Text resultText;
     public TMPro.TMP_Text lifeText;
     public UnityEngine.UI.Button retryButton;
     public UnityEngine.UI.Button exitButton;
+    public UnityEngine.UI.Button menuButton;
     public Player Player;
 
     public static Action OnWallTouched;
@@ -35,6 +36,7 @@ public class Enemys : MonoBehaviour
         retryButton.gameObject.SetActive(false);
         exitButton.gameObject.SetActive(false);
         resultText.gameObject.SetActive(false);
+        menuButton.gameObject.SetActive(false);
         OnWallTouched += SwapDirection; //le agregamos la accion de swapear
         AdvanceSpeed += HighSpeed; //le ageragmos la accion de aumentar la velocidad
         for (int row = 0; row < this.rows; row++)
@@ -126,6 +128,7 @@ public class Enemys : MonoBehaviour
             retryButton.gameObject.SetActive(true);
             exitButton.gameObject.SetActive(true);
             resultText.gameObject.SetActive(true);
+            menuButton.gameObject.SetActive(true);
             return;
         }
         if (amountKilled == totalEnemy)
@@ -134,9 +137,20 @@ public class Enemys : MonoBehaviour
             retryButton.gameObject.SetActive(true);
             exitButton.gameObject.SetActive(true);
             resultText.gameObject.SetActive(true);
+            menuButton.gameObject.SetActive(true);
             return;
         }
     }
+
+    public void Close()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+            Application.Quit();
+#endif
+    }
+
     public void ChangeScene(string nombre)
     {
         SceneManager.LoadScene(nombre);
