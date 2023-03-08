@@ -124,7 +124,7 @@ public class Enemys : MonoBehaviour
     {
         if (Player.life == 0)
         {
-            resultText.text = "You Lose pete";
+            resultText.text = "You Lose";
             retryButton.gameObject.SetActive(true);
             exitButton.gameObject.SetActive(true);
             resultText.gameObject.SetActive(true);
@@ -133,7 +133,7 @@ public class Enemys : MonoBehaviour
         }
         if (amountKilled == totalEnemy)
         {
-            resultText.text = "You Win capo";
+            resultText.text = "You Win";
             retryButton.gameObject.SetActive(true);
             exitButton.gameObject.SetActive(true);
             resultText.gameObject.SetActive(true);
