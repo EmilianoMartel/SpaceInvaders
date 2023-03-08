@@ -73,7 +73,7 @@ public class Enemy : MonoBehaviour
     internal void SwapDirection()
     {
         direction *= -1.0f;
-        transform.position += Vector3.down * 0.2f;
+        transform.position += Vector3.down * 1.0f;
     }
 
     internal void HighSpeed(float PercentKill)
@@ -82,6 +82,6 @@ public class Enemy : MonoBehaviour
         {
             speed = 5;
         }
-        speed += _initSpeed * PercentKill;
+        speed += _initSpeed * PercentKill * 2;
     }
 }

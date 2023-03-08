@@ -30,6 +30,7 @@ public class Enemys : MonoBehaviour
 
     private void Awake() //matriz de enamigos
     {
+        lifeText.text = "Life: " + Player.life;
         Time.timeScale = 2;
         retryButton.gameObject.SetActive(false);
         exitButton.gameObject.SetActive(false);
