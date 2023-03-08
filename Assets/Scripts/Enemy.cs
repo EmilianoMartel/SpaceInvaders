@@ -55,7 +55,7 @@ public class Enemy : MonoBehaviour
 
         _spriteRenderer.sprite = this.animationSprites[_animationFrame];
     }
-       
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.layer == LayerMask.NameToLayer("PlayerAttack"))
