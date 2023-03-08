@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    //float canShoot=10;
     public PlayerAttack PlayerAttack;
     public int life;
-    private bool _laserActive;    
+    public Enemys Enemys;
+    private bool _laserActive;
 
     // Update is called once per frame
     void Update()
@@ -47,12 +47,14 @@ public class Player : MonoBehaviour
     {
         _laserActive = false;
     }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         life--;
         if (life == 0)
-        {
+        {            
             Destroy(gameObject);
+            Enemys.EndGame();
         }
     }
 }
