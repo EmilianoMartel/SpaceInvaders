@@ -23,6 +23,7 @@ public class Enemys : MonoBehaviour
     public UnityEngine.UI.Button retryButton;
     public UnityEngine.UI.Button exitButton;
     public UnityEngine.UI.Button menuButton;
+    public UnityEngine.UI.Button addButton;
     public Player Player;
 
     public static Action OnWallTouched;
@@ -37,6 +38,7 @@ public class Enemys : MonoBehaviour
         exitButton.gameObject.SetActive(false);
         resultText.gameObject.SetActive(false);
         menuButton.gameObject.SetActive(false);
+        addButton.gameObject.SetActive(false);
         OnWallTouched += SwapDirection; //le agregamos la accion de swapear
         AdvanceSpeed += HighSpeed; //le ageragmos la accion de aumentar la velocidad
         for (int row = 0; row < this.rows; row++)
@@ -129,6 +131,7 @@ public class Enemys : MonoBehaviour
             exitButton.gameObject.SetActive(true);
             resultText.gameObject.SetActive(true);
             menuButton.gameObject.SetActive(true);
+            addButton.gameObject.SetActive(true);
             return;
         }
         if (amountKilled == totalEnemy)
@@ -138,6 +141,7 @@ public class Enemys : MonoBehaviour
             exitButton.gameObject.SetActive(true);
             resultText.gameObject.SetActive(true);
             menuButton.gameObject.SetActive(true);
+            addButton.gameObject.SetActive(true);
             return;
         }
     }
