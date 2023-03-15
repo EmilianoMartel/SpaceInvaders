@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+public delegate void EnemysEvent(Enemys enemys);
 public class Enemys : MonoBehaviour
 {
     //variables para la cantidad de enemigos
     public Enemy[] prefabs;
     public int rows = 3;
     public int columns = 3;
+    public bool EnemyTouch = false;
     //variable para la velocidad de los enemigos
     public int amountKilled { get; private set; }
     public int totalEnemy => this.rows * this.columns;
@@ -80,7 +82,7 @@ public class Enemys : MonoBehaviour
         {
             enemy.HighSpeed(percentKilled);
         }
-    }
+    }       
 
     private void Start()
     {
@@ -124,7 +126,7 @@ public class Enemys : MonoBehaviour
 
     public void EndGame()
     {
-        if (Player.life == 0)
+        if (Player.life == 0 || EnemyTouch == true)
         {
             resultText.text = "You Lose";
             retryButton.gameObject.SetActive(true);
@@ -144,6 +146,7 @@ public class Enemys : MonoBehaviour
             addButton.gameObject.SetActive(true);
             return;
         }
+        return;
     }
 
     public void Close()

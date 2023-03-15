@@ -62,7 +62,7 @@ public class Enemy : MonoBehaviour
         {
             OnKilled?.Invoke(this);
             Destroy(this.gameObject);
-        }        
+        }
     }
 
     internal void SwapDirection()
