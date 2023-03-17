@@ -1,38 +1,42 @@
+using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 
 public class ScoreData
 {
-    public List<Score> scores;
-    const string fileName = "C:\\Users\\emi_p\\OneDrive\\Desktop\\ScoreData.txt";
-
-    public ScoreData() 
-    {
-        scores = new List<Score>();
-    }
+    const string fileName = "C:\\Users\\emi_p\\OneDrive\\Desktop\\ScoreData.json";
+    public Score scores = new Score();
 
     public void AddNewScore(string name, int score)
     {
-        scores.Add(new Score(name, score));
-        WriteNewScore();
+        Score newScore = new Score()
+        {
+            names = name,
+            score = score
+        };
+        WriteNewScore(newScore);
     }
 
-    public void WriteNewScore()
+    public void WriteNewScore(Score newScore)
+    {        
+        string dataJSON = JsonUtility.ToJson(newScore);
+        File.WriteAllText(fileName, dataJSON);
+        SceneManager.LoadScene("HighScore");
+    }
+
+    public void ReadScore()
     {
-        using (var stream = File.Open(fileName, FileMode.Create))
+       string json = File.ReadAllText(fileName);
+        for (int i = 0; i < json.Length; i++)
         {
-            using (var writer = new StreamWriter(stream))
-            {
-                for (int i = 0; i < scores.Count; i++)
-                {
-                    writer.Write(scores[i].names);
-                    writer.Write(scores[i].score);
-                }
-            }
+
         }
     }
 }

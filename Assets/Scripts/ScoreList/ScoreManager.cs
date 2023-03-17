@@ -18,5 +18,4 @@ public class ScoreManager : MonoBehaviour
     {
         ScoreData.AddNewScore(NameInput.text, Convert.ToInt32(ScoreInput.text));
     }
-
 }

@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class RowUi : MonoBehaviour
 {
-    public Text rank;
-    public Text names;
-    public Text score;
+    public TMPro.TMP_Text Rank;
+    public TMPro.TMP_Text PlayerName;
+    public TMPro.TMP_Text Score;
 
 
 }
