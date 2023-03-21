@@ -23,15 +23,15 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        Move();        
+        Move();
         if (gameObject.transform.position.x >= 30) //si va a la derecha y choca con el borde esto
         {
-            Enemys.OnWallTouched?.Invoke();
+            EnemyManager.OnWallTouched?.Invoke();
 
         }
         else if (gameObject.transform.position.x <= -30f) //si va a la izquierda y choca con el borde esto
         {
-            Enemys.OnWallTouched?.Invoke();
+            EnemyManager.OnWallTouched?.Invoke();
         }
     }
 

@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public delegate void EnemysEvent(Enemys enemys);
-public class Enemys : MonoBehaviour
+public delegate void EnemysEvent(EnemyManager enemyManager);
+public class EnemyManager : MonoBehaviour
 {
     //variables para la cantidad de enemigos
     public Enemy[] prefabs;

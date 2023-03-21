@@ -3,14 +3,14 @@ using UnityEngine;
 
 public class EnemyWall : MonoBehaviour
 {
-    public Enemys enemys;
+    public EnemyManager enemyManager;
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
-            enemys.EnemyTouch = true;
-            enemys.EndGame();
+            enemyManager.EnemyTouch = true;
+            enemyManager.EndGame();
         }
     }
 }

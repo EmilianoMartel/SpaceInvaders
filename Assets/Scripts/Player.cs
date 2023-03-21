@@ -4,7 +4,7 @@ public class Player : MonoBehaviour
 {
     public PlayerAttack PlayerAttack;
     public int life;
-    public Enemys Enemys;
+    public EnemyManager enemyManager;
     private bool _laserActive;
 
     // Update is called once per frame
@@ -48,11 +48,11 @@ public class Player : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         life--;
-        Enemys.lifeText.text = "Life: " + life;
+        enemyManager.lifeText.text = "Life: " + life;
         if (life == 0)
         {
             Destroy(gameObject);
-            Enemys.EndGame();
+            enemyManager.EndGame();
         }
     }
 }
