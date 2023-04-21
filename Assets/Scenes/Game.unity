@@ -1316,7 +1316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd189573e45618f428ae67a9a7f0d8e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemys: {fileID: 1830586307}
+  enemyManager: {fileID: 1830586307}
 --- !u!1 &923805746
 GameObject:
   m_ObjectHideFlags: 0
@@ -2028,6 +2028,10 @@ PrefabInstance:
       propertyPath: PlayerAttack
       value: 
       objectReference: {fileID: 3156455233053039559, guid: 2d977ba17446d8b4aa7c74a85cf3f6fb, type: 3}
+    - target: {fileID: -2396886226302549653, guid: 3c0443431af176d47861b4b824a2198e, type: 3}
+      propertyPath: enemyManager
+      value: 
+      objectReference: {fileID: 1830586307}
     - target: {fileID: 312518327599483975, guid: 3c0443431af176d47861b4b824a2198e, type: 3}
       propertyPath: m_Size.x
       value: 1.98
