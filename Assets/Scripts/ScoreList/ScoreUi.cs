@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class ScoreUi : MonoBehaviour
 {
-    public RowUi rowUi;
-    public ScoreManager scoreManager;
+    public TMPro.TMP_Text nameText;
+    public TMPro.TMP_Text scoreText;
+    public TMPro.TMP_Text rankText;
 
-    private void Start()
-    {
-        
-    }
 }
