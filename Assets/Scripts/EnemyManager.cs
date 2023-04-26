@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,14 +12,17 @@ public class EnemyManager : MonoBehaviour
     public int rows = 3;
     public int columns = 3;
     public bool EnemyTouch = false;
+
     //variable para la velocidad de los enemigos
     public int amountKilled { get; private set; }
     public int totalEnemy => this.rows * this.columns;
     public float percentKilled => (float)this.amountKilled / (float)this.totalEnemy;
+
     //variable para el ataque
     public EnemyAttack EnemyAttack;
     public float enemyAttackRate = 1.0f;
     public EnemyAttackEvent destroyed;
+
     //variable UI PA LA PROXIMA en su scrip propio
     public TMPro.TMP_Text resultText;
     public TMPro.TMP_Text lifeText;
@@ -26,16 +30,22 @@ public class EnemyManager : MonoBehaviour
     public UnityEngine.UI.Button exitButton;
     public UnityEngine.UI.Button menuButton;
     public UnityEngine.UI.Button addButton;
-    public Player Player;
 
+    public Player Player;    
     public static Action OnWallTouched;
     public static Action AdvanceSpeed;
     private List<Enemy> spawnedEnemies = new List<Enemy>();
+
+    //variables para el tiempo y el Score
+    public ScoreData score;
+    private float currentTime;
+
 
     private void Awake() //matriz de enamigos
     {
         lifeText.text = "Life: " + Player.life;
         Time.timeScale = 2;
+        score.ClearScore();
         retryButton.gameObject.SetActive(false);
         exitButton.gameObject.SetActive(false);
         resultText.gameObject.SetActive(false);
@@ -60,6 +70,11 @@ public class EnemyManager : MonoBehaviour
                 spawnedEnemies.Add(enemy);
             }
         }
+    }
+
+    private void Update()
+    {
+        currentTime += Time.deltaTime;
     }
 
     private void SwapDirection()
@@ -94,6 +109,7 @@ public class EnemyManager : MonoBehaviour
         spawnedEnemies.Remove(enemy);
         enemy.OnKilled -= EnemyKilled;
         this.amountKilled++;
+        ScoreIncrease();
         HighSpeed();
         if (amountKilled == totalEnemy)
         {
@@ -128,7 +144,9 @@ public class EnemyManager : MonoBehaviour
     {
         if (Player.life == 0 || EnemyTouch == true)
         {
-            resultText.text = "You Lose";
+            string text = "You Lose your score is: ";
+            text += score.score;
+            resultText.text = text;
             retryButton.gameObject.SetActive(true);
             exitButton.gameObject.SetActive(true);
             resultText.gameObject.SetActive(true);
@@ -138,7 +156,9 @@ public class EnemyManager : MonoBehaviour
         }
         if (amountKilled == totalEnemy)
         {
-            resultText.text = "You Win";
+            string text = "You Win your score is: ";
+            text += score.score;
+            resultText.text = text;
             retryButton.gameObject.SetActive(true);
             exitButton.gameObject.SetActive(true);
             resultText.gameObject.SetActive(true);
@@ -161,5 +181,25 @@ public class EnemyManager : MonoBehaviour
     public void ChangeScene(string nombre)
     {
         SceneManager.LoadScene(nombre);
+    }
+
+    private void ScoreIncrease()
+    {
+        if (currentTime <= 10)
+        {
+            score.IncrementScore(100f);
+
+        } else if(currentTime <= 20)
+        {
+            score.IncrementScore(50f);
+
+        } else if(currentTime <= 30)
+        {
+            score.IncrementScore(25f);
+        }
+        else if(currentTime<= 50)
+        {
+            score.IncrementScore(10f);
+        }        
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 using System.IO;
 using Unity.VisualScripting;
 using Newtonsoft.Json;
+using UnityEngine.SceneManagement;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -16,11 +17,12 @@ public class ScoreManager : MonoBehaviour
     }
 
     public TMPro.TMP_InputField NameInput;
-    public TMPro.TMP_InputField ScoreInput;
     public TMPro.TMP_Text nameText;
     public TMPro.TMP_Text scoreText;
+    public TMPro.TMP_Text scoreTextData;
     public TMPro.TMP_Text rankText;
     public Score score = new Score();
+    public ScoreData scoreData;
     public List<Score> scoreList = new List<Score>();
     const string FILENAME = "/ScoreData.json";
 
@@ -45,13 +47,17 @@ public class ScoreManager : MonoBehaviour
         {
             scoreList = JsonConvert.DeserializeObject<List<Score>>(File.ReadAllText(Application.dataPath + FILENAME));
         }
+        if (scoreTextData.IsActive())
+        {
+            scoreTextData.text = scoreData.score.ToString();
+        }
     }
 
     public void AddNewScore()
     {
         //Collect data from input
         score.names = NameInput.text;
-        score.score = float.Parse(ScoreInput.text);        
+        score.score = scoreData.score;
         scoreList.Add(score);
         //Order score major to minor
         scoreList.Sort((x, y) => y.score.CompareTo(x.score));
@@ -64,11 +70,7 @@ public class ScoreManager : MonoBehaviour
             } while (scoreList.Count > 10);
         }
         string strOutput = JsonConvert.SerializeObject(scoreList, Formatting.Indented);
-        File.WriteAllText(Application.dataPath + FILENAME, strOutput);        
-    }
-
-    public void ReadScore()
-    {
-        
+        File.WriteAllText(Application.dataPath + FILENAME, strOutput);
+        SceneManager.LoadScene("HighScore");
     }
 }

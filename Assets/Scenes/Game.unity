@@ -2025,6 +2025,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1830586307}
     - target: {fileID: -2396886226302549653, guid: 3c0443431af176d47861b4b824a2198e, type: 3}
+      propertyPath: scoreData
+      value: 
+      objectReference: {fileID: 4383884839028517316, guid: 27e861b624dab514bb92b63e7227330a, type: 3}
+    - target: {fileID: -2396886226302549653, guid: 3c0443431af176d47861b4b824a2198e, type: 3}
       propertyPath: PlayerAttack
       value: 
       objectReference: {fileID: 3156455233053039559, guid: 2d977ba17446d8b4aa7c74a85cf3f6fb, type: 3}
@@ -2139,6 +2143,7 @@ MonoBehaviour:
   menuButton: {fileID: 165681958}
   addButton: {fileID: 1960287595}
   Player: {fileID: 570208153}
+  score: {fileID: 4383884839028517316, guid: 27e861b624dab514bb92b63e7227330a, type: 3}
 --- !u!4 &1830586308
 Transform:
   m_ObjectHideFlags: 0

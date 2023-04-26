@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
     public int life;
     public EnemyManager enemyManager;
     private bool _laserActive;
+    public ScoreData scoreData;
 
     // Update is called once per frame
     void Update()
@@ -48,6 +49,7 @@ public class Player : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         life--;
+        scoreData.IncrementScore(-50);
         enemyManager.lifeText.text = "Life: " + life;
         if (life == 0)
         {
